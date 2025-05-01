@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_housing_root" name="Housing Projects" sequence="10"/>
+
+    <menuitem id="menu_housing_project" 
+              name="Projects" 
+              parent="menu_housing_root" 
+              sequence="1"/>
+
+    <menuitem id="menu_housing_beneficiary" 
+              name="Beneficiaries" 
+              parent="menu_housing_root" 
+              sequence="2"/>
+
+    <menuitem id="menu_housing_services" 
+              name="Services" 
+              parent="menu_housing_root" 
+              sequence="3"/>
+
+    <menuitem id="menu_housing_configuration" 
+              name="Configuration" 
+              parent="menu_housing_root" 
+              sequence="100"/>
+</odoo>

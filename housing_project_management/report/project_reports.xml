@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_housing_project" model="ir.actions.report">
+        <field name="name">Housing Project Report</field>
+        <field name="model">housing.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">housing_project_management.report_housing_project_document</field>
+        <field name="report_file">housing_project_management.report_housing_project_document</field>
+        <field name="binding_model_id" ref="model_housing_project"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

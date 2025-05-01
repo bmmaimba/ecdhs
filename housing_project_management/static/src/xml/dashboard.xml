@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="housing_project_dashboard">
+        <div class="o_housing_dashboard">
+            <div class="o_housing_dashboard_header">
+                <h1>Housing Projects Dashboard</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Total Projects</h5>
+                            <h2><t t-esc="widget.data.total_projects"/></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Active Projects</h5>
+                            <h2><t t-esc="widget.data.active_projects"/></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Total Beneficiaries</h5>
+                            <h2><t t-esc="widget.data.total_beneficiaries"/></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Total Budget</h5>
+                            <h2><t t-esc="widget.data.total_budget"/></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

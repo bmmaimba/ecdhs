@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Project Analysis Report -->
+    <record id="view_project_pivot" model="ir.ui.view">
+        <field name="name">housing.project.pivot</field>
+        <field name="model">housing.project</field>
+        <field name="arch" type="xml">
+            <pivot string="Project Analysis">
+                <field name="project_type" type="row"/>
+                <field name="state" type="col"/>
+                <field name="budget_allocation" type="measure"/>
+                <field name="beneficiary_count" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_project_graph" model="ir.ui.view">
+        <field name="name">housing.project.graph</field>
+        <field name="model">housing.project</field>
+        <field name="arch" type="xml">
+            <graph string="Project Analysis" type="bar">
+                <field name="project_type"/>
+                <field name="budget_allocation" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Beneficiary Analysis Report -->
+    <record id="view_beneficiary_pivot" model="ir.ui.view">
+        <field name="name">housing.beneficiary.pivot</field>
+        <field name="model">housing.beneficiary</field>
+        <field name="arch" type="xml">
+            <pivot string="Beneficiary Analysis">
+                <field name="qualification_status" type="row"/>
+                <field name="project_id" type="col"/>
+                <field name="monthly_income" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+</odoo>

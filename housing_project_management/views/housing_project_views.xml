@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_housing_project_tree" model="ir.ui.view">
+        <field name="name">housing.project.tree</field>
+        <field name="model">housing.project</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="project_type"/>
+                <field name="state"/>
+                <field name="municipality_id"/>
+                <field name="budget_allocation"/>
+                <field name="beneficiary_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_housing_project_form" model="ir.ui.view">
+        <field name="name">housing.project.form</field>
+        <field name="model">housing.project</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_set_to_draft" 
+                            string="Set to Draft" 
+                            type="object" 
+                            states="feasibility,planning,implementation"/>
+                    <button name="action_start_feasibility" 
+                            string="Start Feasibility" 
+                            type="object" 
+                            states="draft"/>
+                    <button name="action_start_planning" 
+                            string="Start Planning" 
+                            type="object" 
+                            states="feasibility"/>
+                    <button name="action_start_implementation" 
+                            string="Start Implementation" 
+                            type="object" 
+                            states="planning"/>
+                    <button name="action_complete" 
+                            string="Complete" 
+                            type="object" 
+                            states="implementation"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Project Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="project_type"/>
+                            <field name="municipality_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="budget_allocation"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="project_description"/>
+                        </page>
+                        <page string="Beneficiaries">
+                            <field name="beneficiary_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="id_number"/>
+                                    <field name="qualification_status"/>
+                                    <field name="monthly_income"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Services">
+                            <field name="services_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Documents">
+                            <group>
+                                <field name="feasibility_report" filename="feasibility_filename"/>
+                                <field name="feasibility_filename" invisible="1"/>
+                                <field name="environmental_impact" filename="environmental_filename"/>
+                                <field name="environmental_filename" invisible="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_housing_project" model="ir.actions.act_window">
+        <field name="name">Housing Projects</field>
+        <field name="res_model">housing.project</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first housing project
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_housing_project_list"
+              name="Projects"
+              parent="menu_housing_project"
+              action="action_housing_project"
+              sequence="1"/>
+</odoo>

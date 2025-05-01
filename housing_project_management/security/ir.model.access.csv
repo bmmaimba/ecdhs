@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_housing_project_user,housing.project.user,model_housing_project,group_housing_user,1,1,1,0
+access_housing_project_manager,housing.project.manager,model_housing_project,group_housing_manager,1,1,1,1
+access_housing_beneficiary_user,housing.beneficiary.user,model_housing_beneficiary,group_housing_user,1,1,1,0
+access_housing_beneficiary_manager,housing.beneficiary.manager,model_housing_beneficiary,group_housing_manager,1,1,1,1
+access_housing_services_user,housing.services.user,model_housing_services,group_housing_user,1,1,1,0
+access_housing_services_manager,housing.services.manager,model_housing_services,group_housing_manager,1,1,1,1

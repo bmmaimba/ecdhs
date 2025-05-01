@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_settings_wizard_form" model="ir.ui.view">
+        <field name="name">project.settings.wizard.form</field>
+        <field name="model">project.settings.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Housing Project Settings">
+                <group>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="default_project_duration"/>
+                        <field name="minimum_beneficiary_age"/>
+                    </group>
+                    <group>
+                        <field name="maximum_income_threshold"/>
+                        <field name="enable_auto_approval"/>
+                        <field name="notification_email"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Save" name="save_settings" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_project_settings_wizard" model="ir.actions.act_window">
+        <field name="name">Housing Project Settings</field>
+        <field name="res_model">project.settings.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_project_settings"
+              name="Settings"
+              parent="menu_housing_configuration"
+              action="action_project_settings_wizard"
+              sequence="100"/>
+</odoo>
