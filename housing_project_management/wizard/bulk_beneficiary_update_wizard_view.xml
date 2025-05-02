@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bulk_beneficiary_update_wizard_form" model="ir.ui.view">
+        <field name="name">housing.bulk.beneficiary.update.wizard.form</field>
+        <field name="model">housing.bulk.beneficiary.update.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bulk Update Beneficiaries">
+                <sheet>
+                    <group>
+                        <field name="project_id" readonly="context.get('active_model') == 'housing.project'"/>
+                    </group>
+                    <group>
+                        <field name="update_qualification"/>
+                        <field name="qualification_status" attrs="{'invisible': [('update_qualification', '=', False)], 'required': [('update_qualification', '=', True)]}"/>
+                    </group>
+                    <group>
+                        <field name="update_vulnerable"/>
+                        <field name="vulnerable" attrs="{'invisible': [('update_vulnerable', '=', False)]}"/>
+                    </group>
+                    <group>
+                        <field name="update_notes"/>
+                        <field name="notes" attrs="{'invisible': [('update_notes', '=', False)], 'required': [('update_notes', '=', True)]}" placeholder="Enter notes to add to all beneficiaries..."/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_update_beneficiaries" string="Update Beneficiaries" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bulk_beneficiary_update_wizard" model="ir.actions.act_window">
+        <field name="name">Bulk Update Beneficiaries</field>
+        <field name="res_model">housing.bulk.beneficiary.update.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_housing_project"/>
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>

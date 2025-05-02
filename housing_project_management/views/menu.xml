@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_housing_root" name="Housing Projects" sequence="10"/>
+    <!-- Main Menu -->
+    <menuitem id="menu_housing_root" name="Housing Projects" sequence="10" web_icon="housing_project_management,static/description/icon.png"/>
 
-    <menuitem id="menu_housing_project" 
-              name="Projects" 
-              parent="menu_housing_root" 
-              sequence="1"/>
+    <!-- Dashboard Menu -->
+    <menuitem id="menu_housing_dashboard" name="Dashboard" parent="menu_housing_root" sequence="1" action="action_housing_dashboard"/>
 
-    <menuitem id="menu_housing_beneficiary" 
-              name="Beneficiaries" 
-              parent="menu_housing_root" 
-              sequence="2"/>
+    <!-- Projects Menu -->
+    <menuitem id="menu_housing_projects" name="Projects" parent="menu_housing_root" sequence="10"/>
+    <menuitem id="menu_housing_project_list" name="All Projects" parent="menu_housing_projects" sequence="1" action="action_housing_project"/>
+    <menuitem id="menu_housing_irdp_projects" name="IRDP Projects" parent="menu_housing_projects" sequence="2" action="action_housing_irdp"/>
+    <menuitem id="menu_housing_uisp_projects" name="UISP Projects" parent="menu_housing_projects" sequence="3" action="action_housing_uisp"/>
+    <menuitem id="menu_housing_rural_projects" name="Rural Projects" parent="menu_housing_projects" sequence="4" action="action_housing_rural"/>
 
-    <menuitem id="menu_housing_services" 
-              name="Services" 
-              parent="menu_housing_root" 
-              sequence="3"/>
+    <!-- Beneficiaries Menu -->
+    <menuitem id="menu_housing_beneficiaries" name="Beneficiaries" parent="menu_housing_root" sequence="20"/>
+    <menuitem id="menu_housing_beneficiary_list" name="All Beneficiaries" parent="menu_housing_beneficiaries" sequence="1" action="action_housing_beneficiary"/>
+    <menuitem id="menu_housing_beneficiary_import" name="Import Beneficiaries" parent="menu_housing_beneficiaries" sequence="2" action="action_beneficiary_import_wizard"/>
 
-    <menuitem id="menu_housing_configuration" 
-              name="Configuration" 
-              parent="menu_housing_root" 
-              sequence="100"/>
+    <!-- Services Menu -->
+    <menuitem id="menu_housing_services_main" name="Services" parent="menu_housing_root" sequence="30"/>
+    <menuitem id="menu_housing_services_list" name="All Services" parent="menu_housing_services_main" sequence="1" action="action_housing_services"/>
+
+    <!-- Reports Menu -->
+    <menuitem id="menu_housing_reports" name="Reports" parent="menu_housing_root" sequence="40"/>
+    <menuitem id="menu_housing_project_analysis" name="Project Analysis" parent="menu_housing_reports" sequence="1" action="action_housing_project_analysis"/>
+    <menuitem id="menu_housing_beneficiary_report" name="Beneficiary Report" parent="menu_housing_reports" sequence="2" action="action_housing_beneficiary_report"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_housing_configuration" name="Configuration" parent="menu_housing_root" sequence="100"/>
+    <menuitem id="menu_housing_settings" name="Settings" parent="menu_housing_configuration" sequence="1" action="action_project_settings_wizard"/>
 </odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_housing_support_tree" model="ir.ui.view">
+        <field name="name">housing.support.tree</field>
+        <field name="model">housing.support</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="document_type"/>
+                <field name="project_id"/>
+                <field name="upload_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_housing_support_form" model="ir.ui.view">
+        <field name="name">housing.support.form</field>
+        <field name="model">housing.support</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="document_type"/>
+                        <field name="project_id"/>
+                        <field name="upload_date"/>
+                        <field name="file_data" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_housing_support" model="ir.actions.act_window">
+        <field name="name">Support Documents</field>
+        <field name="res_model">housing.support</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_housing_support_list"
+              name="Support Documents"
+              parent="menu_housing_configuration"
+              action="action_housing_support"
+              sequence="10"/>
+</odoo>

@@ -5,14 +5,16 @@ class HousingSupport(models.Model):
     _description = 'Housing Support Documents'
 
     name = fields.Char('Document Name', required=True)
-    document = fields.Binary('Document')
-    filename = fields.Char('Filename')
-    project_id = fields.Many2one('housing.project', string='Project', ondelete='cascade')
-    upload_date = fields.Date('Upload Date', default=fields.Date.today)
     document_type = fields.Selection([
-        ('mec_approval', 'MEC Approval'),
-        ('eia', 'Environmental Impact Assessment'),
         ('feasibility', 'Feasibility Study'),
-        ('general', 'General'),
-    ], string='Document Type', default='general')
+        ('environmental', 'Environmental Assessment'),
+        ('approval', 'Approval Document'),
+        ('plan', 'Project Plan'),
+        ('report', 'Progress Report'),
+        ('other', 'Other')
+    ], string='Document Type', required=True)
+    project_id = fields.Many2one('housing.project', string='Project', required=True)
+    upload_date = fields.Date('Upload Date', default=fields.Date.today)
+    file_data = fields.Binary('File')
+    file_name = fields.Char('File Name')
     notes = fields.Text('Notes')

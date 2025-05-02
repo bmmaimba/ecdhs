@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_beneficiary_import_wizard_form" model="ir.ui.view">
+        <field name="name">beneficiary.import.wizard.form</field>
+        <field name="model">beneficiary.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Beneficiaries">
+                <sheet>
+                    <group>
+                        <field name="project_id"/>
+                        <field name="file" widget="binary" filename="filename"/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                    <div>
+                        <p>Import beneficiaries from a CSV file. The file should have the following columns:</p>
+                        <ul>
+                            <li>name (required)</li>
+                            <li>id_number (required)</li>
+                            <li>gender</li>
+                            <li>date_of_birth</li>
+                            <li>monthly_income</li>
+                            <li>phone</li>
+                            <li>email</li>
+                            <li>address</li>
+                            <li>vulnerable</li>
+                            <li>notes</li>
+                        </ul>
+                    </div>
+                </sheet>
+                <footer>
+                    <button name="action_import" string="Import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_beneficiary_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Beneficiaries</field>
+        <field name="res_model">beneficiary.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

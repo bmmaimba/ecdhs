@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_approval_wizard_form" model="ir.ui.view">
+        <field name="name">project.approval.wizard.form</field>
+        <field name="model">project.approval.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Project Approval">
+                <sheet>
+                    <group>
+                        <field name="project_id" readonly="1"/>
+                        <field name="current_state" readonly="1"/>
+                        <field name="next_state" readonly="1"/>
+                        <field name="approval_date"/>
+                        <field name="approved_by"/>
+                    </group>
+                    <group>
+                        <field name="approval_notes" placeholder="Enter approval notes..."/>
+                    </group>
+                    <group>
+                        <field name="document_ids" widget="many2many_binary" string="Supporting Documents"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_approve" string="Approve" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_project_approval_wizard" model="ir.actions.act_window">
+        <field name="name">Project Approval</field>
+        <field name="res_model">project.approval.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

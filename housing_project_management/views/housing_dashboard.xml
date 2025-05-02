@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="housing_project_dashboard_action" model="ir.actions.client">
+        <field name="name">Housing Dashboard</field>
+        <field name="tag">housing_project_dashboard</field>
+    </record>
+    <menuitem id="menu_housing_dashboard" name="Dashboard" parent="menu_housing_root" action="housing_project_dashboard_action" sequence="0"/>
+</odoo>

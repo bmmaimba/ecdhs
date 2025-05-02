@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_housing_services_tree" model="ir.ui.view">
+        <field name="name">housing.services.tree</field>
+        <field name="model">housing.services</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type"/>
+                <field name="status"/>
+                <field name="project_id"/>
+                <field name="estimated_cost"/>
+                <field name="actual_cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_housing_services_form" model="ir.ui.view">
+        <field name="name">housing.services.form</field>
+        <field name="model">housing.services</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Service Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type"/>
+                            <field name="status"/>
+                            <field name="project_id"/>
+                            <field name="contractor_id"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="completion_date"/>
+                            <field name="estimated_cost"/>
+                            <field name="actual_cost"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_housing_services" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">housing.services</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_housing_services_list"
+              name="Services"
+              parent="menu_housing_services"
+              action="action_housing_services"
+              sequence="1"/>
+</odoo>

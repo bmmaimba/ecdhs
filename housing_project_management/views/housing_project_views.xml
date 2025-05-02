@@ -1,99 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_housing_project_tree" model="ir.ui.view">
-        <field name="name">housing.project.tree</field>
+    <!-- Housing Project List View -->
+    <record id="view_housing_project_list" model="ir.ui.view">
+        <field name="name">housing.project.list</field>
         <field name="model">housing.project</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="reference"/>
+            <list string="Housing Projects">
+                <field name="reference" decoration-bf="1"/>
                 <field name="name"/>
                 <field name="project_type"/>
-                <field name="state"/>
                 <field name="municipality_id"/>
-                <field name="budget_allocation"/>
-                <field name="beneficiary_count"/>
-            </tree>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="budget_allocation" sum="Total Budget"/>
+                <field name="spent_amount" sum="Total Spent"/>
+                <field name="remaining_budget" sum="Total Remaining"/>
+                <field name="state" widget="badge" decoration-info="state in ('draft', 'feasibility')" 
+                       decoration-warning="state == 'planning'" decoration-success="state == 'implementation'"
+                       decoration-primary="state == 'completion'" decoration-danger="state == 'cancelled'"/>
+            </list>
         </field>
     </record>
 
+    <!-- Housing Project Form View -->
     <record id="view_housing_project_form" model="ir.ui.view">
         <field name="name">housing.project.form</field>
         <field name="model">housing.project</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="Housing Project">
                 <header>
-                    <button name="action_set_to_draft" 
-                            string="Set to Draft" 
-                            type="object" 
-                            states="feasibility,planning,implementation"/>
-                    <button name="action_start_feasibility" 
-                            string="Start Feasibility" 
-                            type="object" 
-                            states="draft"/>
-                    <button name="action_start_planning" 
-                            string="Start Planning" 
-                            type="object" 
-                            states="feasibility"/>
-                    <button name="action_start_implementation" 
-                            string="Start Implementation" 
-                            type="object" 
-                            states="planning"/>
-                    <button name="action_complete" 
-                            string="Complete" 
-                            type="object" 
-                            states="implementation"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_start_feasibility" string="Start Feasibility" type="object" 
+                            invisible="state != 'draft'"/>
+                    <button name="action_start_planning" string="Start Planning" type="object" 
+                            invisible="state != 'feasibility'"/>
+                    <button name="action_start_implementation" string="Start Implementation" type="object" 
+                            invisible="state != 'planning'"/>
+                    <button name="action_complete" string="Complete Project" type="object" 
+                            invisible="state != 'implementation'"/>
+                    <button name="action_cancel" string="Cancel Project" type="object" 
+                            invisible="state in ('completion', 'cancelled')"/>
+                    <button name="action_set_to_draft" string="Reset to Draft" type="object" 
+                            invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,feasibility,planning,implementation,completion"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_beneficiaries" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="beneficiary_count" string="Beneficiaries" widget="statinfo"/>
+                        </button>
+                        <button name="action_view_services" type="object" class="oe_stat_button" icon="fa-wrench">
+                            <field name="services_count" string="Services" widget="statinfo"/>
+                        </button>
+                        <button name="action_view_documents" type="object" class="oe_stat_button" icon="fa-file-text-o">
+                            <field name="document_count" string="Documents" widget="statinfo"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <h1>
-                            <field name="name" placeholder="Project Name"/>
+                            <field name="reference" readonly="1"/>
                         </h1>
+                        <h2>
+                            <field name="name" placeholder="Project Name"/>
+                        </h2>
                     </div>
                     <group>
                         <group>
-                            <field name="reference"/>
                             <field name="project_type"/>
                             <field name="municipality_id"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
-                        </group>
-                        <group>
+                            <field name="project_manager_id"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
+                        </group>
+                        <group>
                             <field name="budget_allocation"/>
-                            <field name="currency_id" invisible="1"/>
+                            <field name="spent_amount"/>
+                            <field name="remaining_budget"/>
+                            <field name="progress" widget="progressbar"/>
+                            <field name="active" invisible="1"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Description">
-                            <field name="project_description"/>
+                        <page string="Description" name="description">
+                            <field name="project_description" placeholder="Describe the project..."/>
                         </page>
-                        <page string="Beneficiaries">
+                        <page string="Beneficiaries" name="beneficiaries">
                             <field name="beneficiary_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="id_number"/>
                                     <field name="qualification_status"/>
+                                    <field name="gender"/>
                                     <field name="monthly_income"/>
-                                </tree>
+                                    <field name="vulnerable"/>
+                                </list>
                             </field>
                         </page>
-                        <page string="Services">
+                        <page string="Services" name="services">
                             <field name="services_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="type"/>
                                     <field name="status"/>
-                                </tree>
+                                    <field name="contractor_id"/>
+                                    <field name="start_date"/>
+                                    <field name="completion_date"/>
+                                    <field name="estimated_cost" sum="Total Estimated"/>
+                                    <field name="actual_cost" sum="Total Actual"/>
+                                </list>
                             </field>
                         </page>
-                        <page string="Documents">
-                            <group>
-                                <field name="feasibility_report" filename="feasibility_filename"/>
-                                <field name="feasibility_filename" invisible="1"/>
-                                <field name="environmental_impact" filename="environmental_filename"/>
-                                <field name="environmental_filename" invisible="1"/>
-                            </group>
+                        <page string="Documents" name="documents">
+                            <field name="document_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="document_type"/>
+                                    <field name="approval_status"/>
+                                    <field name="approval_date"/>
+                                    <field name="approved_by"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -106,10 +134,178 @@
         </field>
     </record>
 
+    <!-- Housing Project Search View -->
+    <record id="view_housing_project_search" model="ir.ui.view">
+        <field name="name">housing.project.search</field>
+        <field name="model">housing.project</field>
+        <field name="arch" type="xml">
+            <search string="Search Housing Projects">
+                <field name="name"/>
+                <field name="reference"/>
+                <field name="municipality_id"/>
+                <field name="project_manager_id"/>
+                <separator/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Feasibility" name="feasibility" domain="[('state', '=', 'feasibility')]"/>
+                <filter string="Planning" name="planning" domain="[('state', '=', 'planning')]"/>
+                <filter string="Implementation" name="implementation" domain="[('state', '=', 'implementation')]"/>
+                <filter string="Completed" name="completed" domain="[('state', '=', 'completion')]"/>
+                <filter string="Cancelled" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <separator/>
+                <filter string="IRDP" name="irdp" domain="[('project_type', '=', 'irdp')]"/>
+                <filter string="UISP" name="uisp" domain="[('project_type', '=', 'uisp')]"/>
+                <filter string="Rural" name="rural" domain="[('project_type', '=', 'rural')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Municipality" name="group_municipality" context="{'group_by': 'municipality_id'}"/>
+                    <filter string="Project Type" name="group_type" context="{'group_by': 'project_type'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Project Manager" name="group_manager" context="{'group_by': 'project_manager_id'}"/>
+                    <filter string="Start Date" name="group_start_date" context="{'group_by': 'start_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Housing Beneficiary Views -->
+    <record id="view_housing_beneficiary_list" model="ir.ui.view">
+        <field name="name">housing.beneficiary.list</field>
+        <field name="model">housing.beneficiary</field>
+        <field name="arch" type="xml">
+            <list string="Beneficiaries">
+                <field name="name"/>
+                <field name="id_number"/>
+                <field name="gender"/>
+                <field name="date_of_birth"/>
+                <field name="project_id"/>
+                <field name="qualification_status" widget="badge" 
+                       decoration-info="qualification_status == 'pending'" 
+                       decoration-success="qualification_status == 'qualified'" 
+                       decoration-danger="qualification_status == 'disqualified'"/>
+                <field name="monthly_income"/>
+                <field name="vulnerable"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_housing_beneficiary_form" model="ir.ui.view">
+        <field name="name">housing.beneficiary.form</field>
+        <field name="model">housing.beneficiary</field>
+        <field name="arch" type="xml">
+            <form string="Beneficiary">
+                <header>
+                    <field name="qualification_status" widget="statusbar" statusbar_visible="pending,qualified,disqualified"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Beneficiary Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="id_number"/>
+                            <field name="gender"/>
+                            <field name="date_of_birth"/>
+                            <field name="project_id"/>
+                        </group>
+                        <group>
+                            <field name="monthly_income"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="vulnerable"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Address" name="address">
+                            <field name="address"/>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Housing Services Views -->
+    <record id="view_housing_services_list" model="ir.ui.view">
+        <field name="name">housing.services.list</field>
+        <field name="model">housing.services</field>
+        <field name="arch" type="xml">
+            <list string="Services">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="project_id"/>
+                <field name="contractor_id"/>
+                <field name="start_date"/>
+                <field name="completion_date"/>
+                <field name="estimated_cost" sum="Total Estimated"/>
+                <field name="actual_cost" sum="Total Actual"/>
+                <field name="status" widget="badge" 
+                       decoration-info="status == 'planned'" 
+                       decoration-warning="status == 'in_progress'" 
+                       decoration-success="status == 'completed'" 
+                       decoration-danger="status == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_housing_services_form" model="ir.ui.view">
+        <field name="name">housing.services.form</field>
+        <field name="model">housing.services</field>
+        <field name="arch" type="xml">
+            <form string="Service">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="planned,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Service Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type"/>
+                            <field name="project_id"/>
+                            <field name="contractor_id"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="completion_date" invisible="status != 'completed'"/>
+                            <field name="estimated_cost"/>
+                            <field name="actual_cost"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description" placeholder="Describe the service..."/>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
     <record id="action_housing_project" model="ir.actions.act_window">
         <field name="name">Housing Projects</field>
         <field name="res_model">housing.project</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form,pivot,graph</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first housing project
@@ -117,9 +313,25 @@
         </field>
     </record>
 
-    <menuitem id="menu_housing_project_list"
-              name="Projects"
-              parent="menu_housing_project"
-              action="action_housing_project"
-              sequence="1"/>
+    <record id="action_housing_beneficiary" model="ir.actions.act_window">
+        <field name="name">Beneficiaries</field>
+        <field name="res_model">housing.beneficiary</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a new beneficiary
+            </p>
+        </field>
+    </record>
+
+    <record id="action_housing_services" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">housing.services</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new service
+            </p>
+        </field>
+    </record>
 </odoo>
