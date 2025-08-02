@@ -1,0 +1,61 @@
+<odoo>
+  <record id="view_performance_indicator_list" model="ir.ui.view">
+    <field name="name">performance.indicator.list</field>
+    <field name="model">performance.indicator</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="programme_id"/>
+        <field name="unit_of_measure"/>
+        <field name="baseline"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_performance_indicator_form" model="ir.ui.view">
+    <field name="name">performance.indicator.form</field>
+    <field name="model">performance.indicator</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="programme_id"/>
+            <field name="unit_of_measure"/>
+            <field name="baseline"/>
+          </group>
+          <notebook>
+            <page string="Targets">
+              <field name="targets">
+                <list>
+                  <field name="quarter"/>
+                  <field name="target_value"/>
+                  <field name="target_date"/>
+                  <field name="status"/>
+                </list>
+              </field>
+            </page>
+            <page string="Achievements">
+              <field name="achievements">
+                <list>
+                  <field name="quarter"/>
+                  <field name="actual_value"/>
+                  <field name="achievement_date"/>
+                  <field name="percentage_achieved"/>
+                </list>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+        <!-- Chatter -->
+        <chatter/>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_performance_indicator" model="ir.actions.act_window">
+    <field name="name">Indicators</field>
+    <field name="res_model">performance.indicator</field>
+    <field name="view_mode">list,form</field>
+  </record>
+</odoo>

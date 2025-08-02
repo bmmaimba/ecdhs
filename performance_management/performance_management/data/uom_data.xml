@@ -1,0 +1,144 @@
+<odoo>
+  <data noupdate="1">
+    <!-- Performance-specific UoM Categories -->
+    <!-- <record id="uom_categ_performance" model="uom.category">
+      <field name="name">Performance Metrics</field>
+    </record>
+
+    <record id="uom_categ_housing" model="uom.category">
+      <field name="name">Housing Units</field>
+    </record>
+
+    <record id="uom_categ_documents" model="uom.category">
+      <field name="name">Documents</field>
+    </record>
+
+    <record id="uom_categ_people" model="uom.category">
+      <field name="name">People/Beneficiaries</field>
+    </record> -->
+
+    <!-- Performance-specific UoMs -->
+    <!-- <record id="uom_percentage" model="uom.uom">
+      <field name="name">Percentage</field>
+      <field name="category_id" ref="uom_categ_performance"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">0.01</field>
+    </record>
+
+    <record id="uom_score" model="uom.uom">
+      <field name="name">Score</field>
+      <field name="category_id" ref="uom_categ_performance"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">0.1</field>
+    </record>
+
+    <record id="uom_index" model="uom.uom">
+      <field name="name">Index</field>
+      <field name="category_id" ref="uom_categ_performance"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">0.01</field>
+    </record> -->
+
+    <!-- Housing Units -->
+    <!-- <record id="uom_housing_units" model="uom.uom">
+      <field name="name">Housing Units</field>
+      <field name="category_id" ref="uom_categ_housing"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_houses" model="uom.uom">
+      <field name="name">Houses</field>
+      <field name="category_id" ref="uom_categ_housing"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_apartments" model="uom.uom">
+      <field name="name">Apartments</field>
+      <field name="category_id" ref="uom_categ_housing"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record> -->
+
+    <!-- Documents -->
+    <!-- <record id="uom_documents" model="uom.uom">
+      <field name="name">Documents</field>
+      <field name="category_id" ref="uom_categ_documents"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_title_deeds" model="uom.uom">
+      <field name="name">Title Deeds</field>
+      <field name="category_id" ref="uom_categ_documents"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_certificates" model="uom.uom">
+      <field name="name">Certificates</field>
+      <field name="category_id" ref="uom_categ_documents"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_permits" model="uom.uom">
+      <field name="name">Permits</field>
+      <field name="category_id" ref="uom_categ_documents"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record> -->
+
+    <!-- People/Beneficiaries -->
+    <!-- <record id="uom_people" model="uom.uom">
+      <field name="name">People</field>
+      <field name="category_id" ref="uom_categ_people"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_beneficiaries" model="uom.uom">
+      <field name="name">Beneficiaries</field>
+      <field name="category_id" ref="uom_categ_people"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_households" model="uom.uom">
+      <field name="name">Households</field>
+      <field name="category_id" ref="uom_categ_people"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_families" model="uom.uom">
+      <field name="name">Families</field>
+      <field name="category_id" ref="uom_categ_people"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record>
+
+    <record id="uom_jobs" model="uom.uom">
+      <field name="name">Jobs Created</field>
+      <field name="category_id" ref="uom_categ_people"/>
+      <field name="factor">1.0</field>
+      <field name="uom_type">reference</field>
+      <field name="rounding">1.0</field>
+    </record> -->
+  </data>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+  <menuitem id="menu_performance_root" name="Performance Management" sequence="10" web_icon="performance_management,static/description/icon.png"/>
+
+  <menuitem id="menu_performance_config" name="Configuration" parent="menu_performance_root" sequence="100"/>
+  <menuitem id="menu_performance_programmes" name="Programmes" parent="menu_performance_config" action="action_performance_programme" sequence="10"/>
+  <menuitem id="menu_performance_indicators" name="Indicators" parent="menu_performance_config" action="action_performance_indicator" sequence="20"/>
+
+  <menuitem id="menu_performance_tracking" name="Tracking" parent="menu_performance_root" sequence="20"/>
+  <menuitem id="menu_performance_targets" name="Targets" parent="menu_performance_tracking" action="action_performance_target" sequence="10"/>
+  <menuitem id="menu_performance_achievements" name="Achievements" parent="menu_performance_tracking" action="action_performance_achievement" sequence="20"/>
+
+  <menuitem id="menu_performance_reporting" name="Reporting" parent="menu_performance_root" sequence="30"/>
+  <menuitem id="menu_performance_reports" name="Reports" parent="menu_performance_reporting" action="action_performance_report" sequence="10"/>
+
+</odoo>

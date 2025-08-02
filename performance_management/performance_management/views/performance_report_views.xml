@@ -1,0 +1,92 @@
+<odoo>
+  <record id="view_performance_report_list" model="ir.ui.view">
+    <field name="name">performance.report.list</field>
+    <field name="model">performance.report</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="programme_id"/>
+        <field name="report_date"/>
+        <field name="report_period"/>
+        <field name="total_indicators"/>
+        <field name="achieved_targets"/>
+        <field name="overall_performance" widget="percentage"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_performance_report_form" model="ir.ui.view">
+    <field name="name">performance.report.form</field>
+    <field name="model">performance.report</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button name="%(action_performance_achievement)d" type="action"
+                    context="{'search_default_programme_id': programme_id}"
+                    class="oe_stat_button" icon="fa-trophy">
+              <field name="achieved_targets" widget="statinfo" string="Achieved"/>
+            </button>
+          </div>
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="programme_id"/>
+              <field name="report_date"/>
+            </group>
+            <group>
+              <field name="report_period"/>
+              <field name="total_indicators" readonly="1"/>
+              <field name="overall_performance" readonly="1" widget="percentage"/>
+            </group>
+          </group>
+          <group string="Executive Summary">
+            <field name="summary" nolabel="1" placeholder="Executive summary of performance for this period..."/>
+          </group>
+          <notebook>
+            <page string="Achievements">
+              <field name="achievements" readonly="1">
+                <list>
+                  <field name="indicator_id"/>
+                  <field name="actual_value"/>
+                  <field name="uom_id"/>
+                  <field name="achievement_date"/>
+                  <field name="percentage_achieved" widget="percentage"/>
+                  <field name="performance_status" widget="badge"/>
+                </list>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+        <!-- Chatter -->
+        <chatter/>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_performance_report_search" model="ir.ui.view">
+    <field name="name">performance.report.search</field>
+    <field name="model">performance.report</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="programme_id"/>
+        <field name="report_period"/>
+        <filter string="Monthly" name="monthly" domain="[('report_period', '=', 'monthly')]"/>
+        <filter string="Quarterly" name="quarterly" domain="[('report_period', '=', 'quarterly')]"/>
+        <filter string="Annual" name="annual" domain="[('report_period', '=', 'annual')]"/>
+        <group expand="0" string="Group By">
+          <filter string="Programme" name="group_programme" context="{'group_by': 'programme_id'}"/>
+          <filter string="Report Period" name="group_period" context="{'group_by': 'report_period'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="action_performance_report" model="ir.actions.act_window">
+    <field name="name">Reports</field>
+    <field name="res_model">performance.report</field>
+    <field name="view_mode">list,form</field>
+    <field name="search_view_id" ref="view_performance_report_search"/>
+  </record>
+</odoo>

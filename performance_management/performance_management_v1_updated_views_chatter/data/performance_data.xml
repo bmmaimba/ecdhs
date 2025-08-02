@@ -1,0 +1,39 @@
+<odoo>
+  <data noupdate="1">
+    <!-- Sample Programme Data -->
+    <record id="programme_housing" model="performance.programme">
+      <field name="name">Programme 1: Housing</field>
+      <field name="description">Facilitate the provision of adequate housing and improved living environments</field>
+    </record>
+
+    <record id="programme_planning" model="performance.programme">
+      <field name="name">Programme 2: Planning</field>
+      <field name="description">Facilitate integrated human settlement planning and development</field>
+    </record>
+
+    <record id="programme_property" model="performance.programme">
+      <field name="name">Programme 3: Property Management</field>
+      <field name="description">Facilitate the registration and transfer of state-owned properties</field>
+    </record>
+
+    <record id="programme_regional" model="performance.programme">
+      <field name="name">Programme 4: Regional and Local Development</field>
+      <field name="description">Facilitate regional and local development initiatives</field>
+    </record>
+
+    <!-- Sample Indicators -->
+    <record id="indicator_housing_units" model="performance.indicator">
+      <field name="name">Number of housing units constructed</field>
+      <field name="programme_id" ref="programme_housing"/>
+      <field name="unit_of_measure">Units</field>
+      <field name="baseline">0</field>
+    </record>
+
+    <record id="indicator_title_deeds" model="performance.indicator">
+      <field name="name">Number of title deeds registered</field>
+      <field name="programme_id" ref="programme_property"/>
+      <field name="unit_of_measure">Deeds</field>
+      <field name="baseline">0</field>
+    </record>
+  </data>
+</odoo>

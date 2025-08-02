@@ -1,0 +1,65 @@
+<odoo>
+  <data noupdate="1">
+    <!-- Sample Programme Data with Outcome Outputs -->
+    <!-- <record id="programme_housing" model="performance.programme">
+      <field name="name">Programme 1: Housing</field>
+      <field name="description">Facilitate the provision of adequate housing and improved living environments</field>
+      <field name="outcome_output">Outcome: Increased access to adequate housing for citizens
+Output: Number of housing units constructed, serviced sites provided, and housing subsidies approved</field>
+    </record>
+
+    <record id="programme_planning" model="performance.programme">
+      <field name="name">Programme 2: Planning</field>
+      <field name="description">Facilitate integrated human settlement planning and development</field>
+      <field name="outcome_output">Outcome: Improved spatial planning and land use management
+Output: Number of spatial development frameworks approved, land use schemes processed, and planning applications approved</field>
+    </record>
+
+    <record id="programme_property" model="performance.programme">
+      <field name="name">Programme 3: Property Management</field>
+      <field name="description">Facilitate the registration and transfer of state-owned properties</field>
+      <field name="outcome_output">Outcome: Efficient management and transfer of state properties
+Output: Number of title deeds registered, property transfers completed, and property valuations conducted</field>
+    </record>
+
+    <record id="programme_regional" model="performance.programme">
+      <field name="name">Programme 4: Regional and Local Development</field>
+      <field name="description">Facilitate regional and local development initiatives</field>
+      <field name="outcome_output">Outcome: Enhanced regional and local economic development
+Output: Number of development projects supported, jobs created, and community development initiatives implemented</field>
+    </record> -->
+
+    <!-- Sample Indicators with Output Indicators -->
+    <!-- <record id="indicator_housing_units" model="performance.indicator">
+      <field name="name">Number of housing units constructed</field>
+      <field name="programme_id" ref="programme_housing"/>
+      <field name="output_indicator">Housing units completed and handed over to beneficiaries, meeting minimum norms and standards for adequate housing</field>
+      <field name="uom_id" ref="uom_housing_units"/>
+      <field name="baseline">0</field>
+    </record>
+
+    <record id="indicator_title_deeds" model="performance.indicator">
+      <field name="name">Number of title deeds registered</field>
+      <field name="programme_id" ref="programme_property"/>
+      <field name="output_indicator">Title deeds processed, registered, and issued to rightful owners in accordance with legal requirements</field>
+      <field name="uom_id" ref="uom_title_deeds"/>
+      <field name="baseline">0</field>
+    </record>
+
+    <record id="indicator_jobs_created" model="performance.indicator">
+      <field name="name">Number of jobs created through development initiatives</field>
+      <field name="programme_id" ref="programme_regional"/>
+      <field name="output_indicator">Direct and indirect employment opportunities created through regional and local development projects</field>
+      <field name="uom_id" ref="uom_jobs"/>
+      <field name="baseline">0</field>
+    </record>
+
+    <record id="indicator_beneficiaries_supported" model="performance.indicator">
+      <field name="name">Number of beneficiaries supported</field>
+      <field name="programme_id" ref="programme_housing"/>
+      <field name="output_indicator">Individuals and households that received housing support services or subsidies</field>
+      <field name="uom_id" ref="uom_beneficiaries"/>
+      <field name="baseline">0</field>
+    </record> -->
+  </data>
+</odoo>

@@ -1,0 +1,70 @@
+<odoo>
+  <record id="view_performance_achievement_list" model="ir.ui.view">
+    <field name="name">performance.achievement.list</field>
+    <field name="model">performance.achievement</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="indicator_id"/>
+        <field name="actual_value"/>
+        <field name="achievement_date"/>
+        <field name="quarter"/>
+        <field name="variance"/>
+        <field name="percentage_achieved"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_performance_achievement_form" model="ir.ui.view">
+    <field name="name">performance.achievement.form</field>
+    <field name="model">performance.achievement</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <group>
+              <field name="indicator_id"/>
+              <field name="actual_value"/>
+              <field name="achievement_date"/>
+              <field name="quarter"/>
+            </group>
+            <group>
+              <field name="variance" readonly="1"/>
+              <field name="percentage_achieved" readonly="1"/>
+              <field name="comments"/>
+            </group>
+          </group>
+        </sheet>
+        <!-- Chatter -->
+        <chatter/>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_performance_achievement_search" model="ir.ui.view">
+    <field name="name">performance.achievement.search</field>
+    <field name="model">performance.achievement</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="indicator_id"/>
+        <field name="quarter"/>
+        <filter string="Q1" name="q1" domain="[('quarter', '=', 'q1')]"/>
+        <filter string="Q2" name="q2" domain="[('quarter', '=', 'q2')]"/>
+        <filter string="Q3" name="q3" domain="[('quarter', '=', 'q3')]"/>
+        <filter string="Q4" name="q4" domain="[('quarter', '=', 'q4')]"/>
+        <filter string="Above Target" name="above_target" domain="[('percentage_achieved', '&gt;', 100)]"/>
+        <filter string="Below Target" name="below_target" domain="[('percentage_achieved', '&lt;', 100)]"/>
+        <group expand="0" string="Group By">
+          <filter string="Quarter" name="group_quarter" context="{'group_by': 'quarter'}"/>
+          <filter string="Indicator" name="group_indicator" context="{'group_by': 'indicator_id'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="action_performance_achievement" model="ir.actions.act_window">
+    <field name="name">Achievements</field>
+    <field name="res_model">performance.achievement</field>
+    <field name="view_mode">list,form</field>
+    <field name="search_view_id" ref="view_performance_achievement_search"/>
+  </record>
+</odoo>

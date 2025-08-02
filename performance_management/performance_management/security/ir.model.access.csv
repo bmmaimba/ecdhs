@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_performance_programme_manager,access.performance.programme.manager,model_performance_programme,base.group_system,1,1,1,1
+access_performance_indicator_manager,access.performance.indicator.manager,model_performance_indicator,base.group_system,1,1,1,1
+access_performance_target_manager,access.performance.target.manager,model_performance_target,base.group_system,1,1,1,1
+access_performance_achievement_manager,access.performance.achievement.manager,model_performance_achievement,base.group_system,1,1,1,1
+access_performance_report_manager,access.performance.report.manager,model_performance_report,base.group_system,1,1,1,1
+access_performance_programme_user,access.performance.programme.user,model_performance_programme,base.group_user,1,0,0,0
+access_performance_indicator_user,access.performance.indicator.user,model_performance_indicator,base.group_user,1,0,0,0
+access_performance_target_user,access.performance.target.user,model_performance_target,base.group_user,1,1,1,0
+access_performance_achievement_user,access.performance.achievement.user,model_performance_achievement,base.group_user,1,1,1,0
+access_performance_report_user,access.performance.report.user,model_performance_report,base.group_user,1,0,0,0

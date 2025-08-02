@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <menuitem id="menu_performance_root" name="Performance Management" sequence="10" web_icon="performance_management,static/description/icon.png"/>
+  <menuitem id="menu_performance_programmes" name="Programmes" parent="menu_performance_root" action="action_performance_programme"/>
+  <menuitem id="menu_performance_indicators" name="Indicators" parent="menu_performance_root" action="action_performance_indicator"/>
+  <menuitem id="menu_performance_targets" name="Targets" parent="menu_performance_root" action="action_performance_target"/>
+  <menuitem id="menu_performance_achievements" name="Achievements" parent="menu_performance_root" action="action_performance_achievement"/>
+  <menuitem id="menu_performance_reports" name="Reports" parent="menu_performance_root" action="action_performance_report"/>
+
+</odoo>
